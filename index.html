@@ -1,14 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Website</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-  </head>
-  <body>
-   <h1 style="text-align:center;">Welcome to the DragonProgrammer Test Website.</h1>
-  </body>
+    <title>Login Screen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your username">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password">
+
+        <button onclick="login()">Login</button>
+    </div>
+
+    <script>
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Pre-made accounts for demonstration purposes
+            var accounts = [
+                { username: "user1", password: "pass1", redirect: "in.html" },
+                { username: "dragonlogo", password: "macburger", redirect: "logoin.html" },
+                { username: "mrpiga", password: "yessir", redirect: "pigin.html"}
+            ];
+
+            var userExists = false;
+            var correctPassword = false;
+            var redirectURL = "";
+
+            // Check if the entered credentials match any pre-made accounts
+            for (var i = 0; i < accounts.length; i++) {
+                if (accounts[i].username === username) {
+                    userExists = true;
+                    if (accounts[i].password === password) {
+                        correctPassword = true;
+                        redirectURL = accounts[i].redirect;
+                        break;
+                    }
+                }
+            }
+
+            // Simulate redirection or show error message
+            if (userExists && correctPassword) {
+                window.location.href = redirectURL;
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        }
+    </script>
+  <h2 style="position:absolute; margin-top:550px;">
+    <a href="forget.html">Forgot username or password?</a>
+  </h2>
+</body>
 </html>
